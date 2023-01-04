@@ -55,6 +55,6 @@ function cbrt_iter(guess, x) {
            : cbrt_iter(improve_cube(guess, x), x);
 }
 
-function cube_root(x) {
+function cbrt(x) {
     return cbrt_iter(1, x);
 }
