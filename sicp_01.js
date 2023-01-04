@@ -4,57 +4,60 @@ function abs(x) {
     return x >= 0 ? x : - x;
 }
 
-function square(x) {
-    return x * x;
-}
-
-function is_good_enough(guess, x) {
-    
-    return relative_error(guess, improve(guess, x)) < 0.001;
+function average(l, r) {
+    return (l + r) / 2;
 }
 
 function relative_error(estimate, reference) {
-    
     return abs(estimate - reference) / reference;
 }
 
-function average(x, y) {
-    return (x + y) / 2;
-}
-
-function improve(guess, x) {
-    return average(guess, x / guess);
-}
-
-function sqrt_iter(guess, x) {
-    return is_good_enough(guess, x)
-           ? guess
-           : sqrt_iter(improve(guess, x), x);
-}
-
 function sqrt(x) {
-    return sqrt_iter(1, x);
-}
-
-function cube(x) {
-    return x * x * x;
-}
-
-function improve_cube(guess, x) {
-    return ((x / square(guess)) + (2 * guess)) / 3;
-}
-
-function is_good_enough_cube(guess, x) {
     
-    return relative_error(guess, improve_cube(guess, x)) < 0.001;
+    function square() {
+        return x * x;
+    }
+    
+    function is_good_enough(guess) {
+        
+        return relative_error(guess, improve(guess)) < 0.001;
+    }
+    
+    function improve(guess) {
+        return average(guess, x / guess);
+    }
+    
+    function sqrt_iter(guess) {
+        return is_good_enough(guess)
+               ? guess
+               : sqrt_iter(improve(guess));
+    }
+    
+    return sqrt_iter(1);
 }
 
-function cbrt_iter(guess, x) {
-    return is_good_enough_cube(guess, x)
-           ? guess
-           : cbrt_iter(improve_cube(guess, x), x);
-}
 
 function cbrt(x) {
-    return cbrt_iter(1, x);
+    
+    function cube() {
+        return x * x * x;
+    }
+    
+    function improve(guess) {
+        return ((x / (guess * guess)) + (2 * guess)) / 3;
+    }
+    
+    function is_good_enough(guess) {
+        
+        return relative_error(guess, improve(guess)) < 0.001;
+    }
+    
+    function cbrt_iter(guess) {
+        return is_good_enough(guess)
+               ? guess
+               : cbrt_iter(improve(guess));
+    }
+
+    
+    return cbrt_iter(1);
 }
