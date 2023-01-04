@@ -9,7 +9,13 @@ function square(x) {
 }
 
 function is_good_enough(guess, x) {
-    return abs(square(guess) - x) < 0.001;
+    
+    return relative_error(guess, improve(guess, x)) < 0.001;
+}
+
+function relative_error(estimate, reference) {
+    
+    return abs(estimate - reference) / reference;
 }
 
 function average(x, y) {
