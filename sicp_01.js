@@ -94,3 +94,9 @@ function first_denomination(kinds_of_coins) {
          : kinds_of_coins === 5 ? 50
          : 0;   
 }
+
+function f_of_n(n) {
+        return n < 3
+               ? n
+               : f_of_n(n-1) + 2 * f_of_n(n-2) 3 * f_of_n(n-3);
+}
