@@ -96,7 +96,14 @@ function first_denomination(kinds_of_coins) {
 }
 
 function f_of_n(n) {
+    
         return n < 3
                ? n
-               : f_of_n(n-1) + 2 * f_of_n(n-2) 3 * f_of_n(n-3);
+               : f_of_n_iter(2,1,0,n-2);
+}
+
+function f_of_n_iter(a, b, c, count) {
+    return count === 0
+           ? a 
+           : f_of_n_iter(a + 2*b + 3*c,a, b, count - 1);
 }
