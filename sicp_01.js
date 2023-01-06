@@ -61,3 +61,36 @@ function cbrt(x) {
     
     return cbrt_iter(1);
 }
+
+function fib(n) {
+    return fib_iter(1, 0, n);
+}
+function fib_iter(a, b, count) {
+    return count === 0
+           ? b
+           : fib_iter(a + b, a, count - 1);
+}
+
+function count_change(amount) {
+    return cc(amount, 5);
+}
+
+function cc(amount, kinds_of_coins) {
+    return amount === 0
+           ? 1
+           : amount < 0 || kinds_of_coins === 0
+           ? 0
+           : cc(amount, kinds_of_coins - 1)
+             +
+             cc(amount - first_denomination(kinds_of_coins),
+                kinds_of_coins);
+}
+
+function first_denomination(kinds_of_coins) {
+    return kinds_of_coins === 1 ? 1
+         : kinds_of_coins === 2 ? 5
+         : kinds_of_coins === 3 ? 10
+         : kinds_of_coins === 4 ? 25
+         : kinds_of_coins === 5 ? 50
+         : 0;   
+}
